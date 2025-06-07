@@ -116,11 +116,6 @@
     <button class="button">Ajouter une sortie</button>
     <button class="button">Voir la carte</button>
 
- 
-
-
- 
-     
     <div class="input-group">
       <label for="lieu">Nom du lieu</label>
       <input type="text" id="lieu" placeholder="Étang de la Varenne">
@@ -147,69 +142,17 @@
 
     <button class="button">Enregistrer</button>
 
- <div id="meteo" style="margin-top: 1rem; padding: 1rem; background-color: #1e293b; border-radius: 0.5rem;">
-      📍 <strong>Météo actuelle</strong><br>
-      <span id="meteo-info">En attente...</span>
-
-      <div id="indice-peche" class="fish-index">
-        <span class="fish-icon">🐟</span>
-      </div>
+    <h2>Sorties récentes</h2>
+    <div class="trip">
+      <strong>12 avril - 08:15</strong><br>
+      Étang de la Varenne<br>
+      🌤️ Conditions météo : légères brises
     </div>
-
-    <p><a href="#" class="link">🌦️ Conditions météo en temps réel</a></p>
-
-    <div class="footer">
-      Développé avec 🎣 par CARNATEAM. Version bêta.
+    <div class="trip">
+      <strong>5 avril - 07:30</strong><br>
+      Villefranche<br>
+      🌧️ Conditions météo : pluie légère
     </div>
-  </div>
-
-  <script>
-    function calculerIndicePeche(temp, vent) {
-      let score = 0;
-      if (temp >= 15 && temp <= 25) score += 50;
-      if (vent >= 1 && vent <= 10) score += 40;
-      if (score > 80) return { pourcentage: score, niveau: 'high' };
-      if (score > 50) return { pourcentage: score, niveau: 'medium' };
-      return { pourcentage: score, niveau: 'low' };
-    }
-      async function afficherMeteoParCoordonnees(lat, lon) {
-      const apiKey = "29808f7f46c2668ac411ad6374d444dc";
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=fr`;
-
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-        if (data.cod === 200) {
-          const temp = data.main.temp;
-          const vent = data.wind.speed;
-          const info = `🌡️ ${temp}°C, ${data.weather[0].description}, 💨 vent ${vent} km/h`;
-          document.getElementById("meteo-info").innerText = info;
-
-          const indice = calculerIndicePeche(temp, vent);
-          const elem = document.getElementById("indice-peche");
-          elem.className = `fish-index ${indice.niveau}`;
-          elem.innerHTML = `<span class="fish-icon">🐟</span> ${indice.pourcentage}%`;
-        } else {
-          document.getElementById("meteo-info").innerText = "Erreur météo.";
-        }
-      } catch (err) {
-        document.getElementById("meteo-info").innerText = "Erreur de chargement.";
-      }
-    
-        function geolocaliser() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          afficherMeteoParCoordonnees(lat, lon);
-          document.getElementById("localisation").value = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-        }, () => {
-          alert("Impossible d'obtenir votre localisation.");
-        });
-      } else {
-        alert("La géolocalisation n'est pas supportée par ce navigateur.");
-      }
-    }
 
     <div id="meteo" style="margin-top: 1rem; padding: 1rem; background-color: #1e293b; border-radius: 0.5rem;">
       📍 <strong>Météo actuelle</strong><br>
@@ -238,7 +181,7 @@
     }
 
     async function afficherMeteoParCoordonnees(lat, lon) {
-      const apiKey = "29808f7f46c2668ac411ad6374d444dc";
+      const apiKey = "TA_CLE_API_ICI";
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=fr`;
 
       try {
@@ -275,7 +218,9 @@
       } else {
         alert("La géolocalisation n'est pas supportée par ce navigateur.");
       }
-    }    function connexion() {
+    }
+
+    function connexion() {
       const prenom = document.getElementById("prenom").value;
       if (prenom) {
         document.getElementById("welcome").innerText = `Bonjour ${prenom}, prêt à pêcher !`;
