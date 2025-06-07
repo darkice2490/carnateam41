@@ -147,8 +147,7 @@
 
     <button class="button">Enregistrer</button>
 
-
-    <div id="meteo" style="margin-top: 1rem; padding: 1rem; background-color: #1e293b; border-radius: 0.5rem;">
+ <div id="meteo" style="margin-top: 1rem; padding: 1rem; background-color: #1e293b; border-radius: 0.5rem;">
       📍 <strong>Météo actuelle</strong><br>
       <span id="meteo-info">En attente...</span>
 
@@ -173,8 +172,7 @@
       if (score > 50) return { pourcentage: score, niveau: 'medium' };
       return { pourcentage: score, niveau: 'low' };
     }
-
-    async function afficherMeteoParCoordonnees(lat, lon) {
+      async function afficherMeteoParCoordonnees(lat, lon) {
       const apiKey = "29808f7f46c2668ac411ad6374d444dc";
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=fr`;
 
