@@ -196,8 +196,7 @@
         document.getElementById("meteo-info").innerText = "Erreur de chargement.";
       }
     }
-
-    function geolocaliser() {
+      function geolocaliser() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           const lat = position.coords.latitude;
