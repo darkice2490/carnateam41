@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARNATEAM</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0a1628, #122b45);
+      color: white;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+    }
+    .button {
+      display: inline-block;
+      margin: 0.5rem 0.25rem;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #1e3a8a;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input, textarea {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    .photo-button {
+      background-color: #334155;
+      color: white;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      text-align: center;
+    }
+    .trip {
+      background-color: #1e293b;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+    }
+    .link {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Carnet de Pêche</h1>
+    <button class="button">Ajouter une sortie</button>
+    <button class="button">Voir la carte</button>
+
+    <div class="input-group">
+      <label for="lieu">Nom du lieu</label>
+      <input type="text" id="lieu" placeholder="Étang de la Varenne">
+    </div>
+
+    <div class="input-group">
+      <label for="localisation">Localisation</label>
+      <input type="text" id="localisation" placeholder="Ville, GPS ou adresse">
+    </div>
+
+    <div class="input-group">
+      <label for="especes">Espèces pêchées</label>
+      <input type="text" id="especes" placeholder="Carpe, brochet, brème...">
+    </div>
+
+    <div class="input-group">
+      <label for="notes">Notes</label>
+      <textarea id="notes" placeholder="Fond vaseux, vent faible, appât utilisé..."></textarea>
+    </div>
+
+    <div class="input-group">
+      <div class="photo-button">📸 Ajouter une photo</div>
+    </div>
+
+    <button class="button">Enregistrer</button>
+
+    <h2>Sorties récentes</h2>
+    <div class="trip">
+      <strong>12 avril - 08:15</strong><br>
+      Étang de la Varenne<br>
+      🌤️ Conditions météo : légères brises
+    </div>
+    <div class="trip">
+      <strong>5 avril - 07:30</strong><br>
+      Villefranche<br>
+      🌧️ Conditions météo : pluie légère
+    </div>
+
+    <p><a href="#" class="link">🌦️ Conditions météo en temps réel</a></p>
+  </div>
+</body>
+</html>
