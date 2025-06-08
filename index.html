@@ -225,6 +225,105 @@
       if (prenom) {
         document.getElementById("welcome").innerText = `Bonjour ${prenom}, prêt à pêcher !`;
       }
+
+       <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARNATEAM</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0a1628, #122b45);
+      color: white;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h1, #welcome {
+      text-align: center;
+      font-size: 2rem;
+    }
+    .button {
+      display: inline-block;
+      margin: 0.5rem 0.25rem;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background-color: #1e3a8a;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    input, textarea {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+    .map-container {
+      height: 400px;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Carnet de Pêche</h1>
+
+    <div class="input-group">
+      <label for="lieu">Nom du lieu</label>
+      <input type="text" id="lieu" placeholder="Étang de la Varenne">
+    </div>
+
+    <div class="input-group">
+      <label for="localisation">Localisation</label>
+      <input type="text" id="localisation" placeholder="Ville, GPS ou adresse">
+    </div>
+
+    <div class="input-group">
+      <label for="notes">Notes</label>
+      <textarea id="notes" placeholder="Fond vaseux, vent faible, appât utilisé..."></textarea>
+    </div>
+
+    <button class="button" onclick="ajouterMarqueurManuel()">Ajouter un marqueur</button>
+
+    <div id="map" class="map-container"></div>
+
+    <div class="footer">
+      Développé avec 🎣 par CARNATEAM. Version bêta.
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    var map = L.map('map').setView([47.3405, 1.7440], 10); // Coordonnées centrées sur Romorantin-Lanthenay
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    function ajouterMarqueur(lat, lon, nom, notes) {
+      var popupContent = `<strong>${nom}</strong><br>${notes}`;
+      L.marker([lat, lon]).addTo(map).bindPopup(popupContent);
+    }
+
+    function ajouterMarqueurManuel() {
+      var lieu = document.getElementById("lieu").value;
+      var localisation = document.getElementById("localisation").value;
+      var notes = document.getElementById("notes").value;
+
+      if (localisation.includes(",")) {
+        var coords = localisation.split(",");
+        var lat = parseFloat(coords[0].trim());
+        var lon = parseFloat(coords[1].trim());
+        ajouterMarqueur(lat, lon, lieu, notes);
+      } else {
+        alert("Veuillez entrer des coordonnées GPS valides.")    
+      }
     }
   </script>
 </body>
